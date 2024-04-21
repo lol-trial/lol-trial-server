@@ -51,8 +51,17 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        // 로그인 없이 /login, /, /join path 접근 허용
-                        .requestMatchers("/login", "/", "join").permitAll()
+                        // 로그인 작업 없이 해당 경로 접근 허용
+                        .requestMatchers(
+                                "/example/**",
+                                "/",
+                                "/join",
+                                "/login",
+                                // /swagger-ui/**, /swagger-resources/**, /v3/api-docs/** -> swagger resource 경로
+                                "/swagger-ui/**",
+                                "/swagger-resources/**",
+                                "/v3/api-docs/**"
+                        ).permitAll()
                         // admin은 Role 체크
                         .requestMatchers("/admin").hasRole("ADMIN")
                         // 다른 path들은 로그인 되어야만 접근 가능

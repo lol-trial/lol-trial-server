@@ -14,7 +14,7 @@ public class JoinService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void join(JoinDto joinDto) {
-        Boolean exists = userRepository.existsByUsername(joinDto.getUsername());
+        Boolean exists = userRepository.existsByName(joinDto.getUsername());
 
         if(exists) {
             return;
@@ -22,10 +22,10 @@ public class JoinService {
 
         User user = new User();
 
-        user.setUsername(joinDto.getUsername());
-        user.setPassword(
-                bCryptPasswordEncoder.encode(joinDto.getPassword())
-        );
+        user.setName(joinDto.getUsername());
+//        user.setPassword(
+//                bCryptPasswordEncoder.encode(joinDto.getPassword())
+//        );
         user.setRole("ROLE_USER");
 
         userRepository.save(user);
