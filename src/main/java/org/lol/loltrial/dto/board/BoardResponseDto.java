@@ -1,15 +1,26 @@
 package org.lol.loltrial.dto.board;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.lol.loltrial.entity.FeedbackBoard;
 
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+@Builder
 public class BoardResponseDto {
     private String title;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public static BoardResponseDto of(FeedbackBoard feedbackBoard) {
+        return BoardResponseDto.builder()
+                    .title(feedbackBoard.getTitle())
+                    .content(feedbackBoard.getContent())
+                    .createdAt(feedbackBoard.getCreatedAt())
+                    .updatedAt(feedbackBoard.getUpdatedAt())
+                .build();
+    }
 }

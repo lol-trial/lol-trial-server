@@ -3,10 +3,10 @@ package org.lol.loltrial.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class ResponseDto {
     private int statusCode;
     private String result;

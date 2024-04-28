@@ -24,9 +24,7 @@ public class FeedbackBoardController {
                     + "query string으로 page 번호를 주세요(size는 선택, 기본 10)"
     )
     public ResponseDto getBoardList(){
-
+        // API 하나당 하나의 dto 생성 -> data객체에 return
         return new ResponseDto(200, "성공", "글 조회 성공", feedbackBoardService.getBoardList());
     }
-
-
 }

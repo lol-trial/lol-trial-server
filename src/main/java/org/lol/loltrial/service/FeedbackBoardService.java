@@ -24,11 +24,9 @@ public class FeedbackBoardService {
 
     public List<BoardResponseDto> getBoardList() {
 
-        List<BoardResponseDto> result = feedbackBoardRepository.findAll()
+        return feedbackBoardRepository.findAll()
                 .stream()
-                .map(o -> new BoardResponseDto())
+                .map(BoardResponseDto::of)
                 .collect(Collectors.toList());
-
-        return result;
     }
 }

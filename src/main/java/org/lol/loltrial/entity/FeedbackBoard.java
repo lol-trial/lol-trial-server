@@ -36,11 +36,10 @@ public class FeedbackBoard {
     @UpdateTimestamp
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    // 동영상 ID(PK) Mapping하기(OneToMany)
-
     @Builder
     public FeedbackBoard(String title, String content) {
         this.title = title;
         this.content = content;
     }
+
 }
