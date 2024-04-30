@@ -1,8 +1,7 @@
-package org.lol.loltrial.dto.board;
+package org.lol.loltrial.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.lol.loltrial.entity.FeedbackBoard;
 
 import java.time.LocalDateTime;

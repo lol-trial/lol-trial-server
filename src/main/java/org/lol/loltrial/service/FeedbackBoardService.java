@@ -1,10 +1,7 @@
 package org.lol.loltrial.service;
 
 import lombok.RequiredArgsConstructor;
-import org.lol.loltrial.dto.ExampleDto;
-import org.lol.loltrial.dto.board.BoardResponseDto;
-import org.lol.loltrial.entity.Example;
-import org.lol.loltrial.repository.ExampleRepository;
+import org.lol.loltrial.dto.BoardResponseDto;
 import org.lol.loltrial.repository.FeedbackBoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

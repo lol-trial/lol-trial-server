@@ -55,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/example/**",
                                 "/",
+                                "/api/*",
                                 "/join",
                                 "/login",
                                 // /swagger-ui/**, /swagger-resources/**, /v3/api-docs/** -> swagger resource 경로
