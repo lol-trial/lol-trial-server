@@ -16,9 +16,34 @@ spring:
   jwt:
     secret: 64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff
     expiration: 86400000
+  security:
+    #kakao 로그인 요청 url -> http://localhost:8080/oauth2/authorization/kakao
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: c620ab3b311630482c59977b6bf24e44
+            client-secret: m01OEn9ApjHJkRoyC7gDERwfvarq7Loq
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            client-authentication-method: client_secret_post # kakao 인증 토큰 발급 요청 메서드(post)
+            authorization-grant-type: authorization_code
+            scope: # kakao 개인 정보 동의 항목 설정의 ID 값
+              - profile_nickname
+#              - profile_image
+#              - account_email
+            client-name: kakao
+
+        # kakao provider 설정
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize # 카카오 로그인 화면
+            token-uri: https://kauth.kakao.com/oauth/token # code -> token
+            user-info-uri: https://kapi.kakao.com/v2/user/me # token -> userInfo
+            user-name-attribute: id
 
 springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter : alpha
 #    doc-expansion : none
+

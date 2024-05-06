@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.lol.loltrial.dto.CustomUserDetails;
+import org.lol.loltrial.dto.UserDetail;
 import org.lol.loltrial.entity.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +27,6 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization");
-        System.out.println("filter 진입");
 
         if(authorization == null || !authorization.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
@@ -37,13 +36,14 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String token = authorization.split(" ")[1];
 
-        User user = new User();
-        user.setName(jwtUtil.getUsername(token));
-        user.setRole(jwtUtil.getRole(token));
+        User user = User.builder()
+                .name(jwtUtil.getUsername(token))
+                .role(jwtUtil.getRole(token))
+                .build();
 
-        CustomUserDetails customUserDetails = new CustomUserDetails(user);
+        UserDetail userDetail = new UserDetail(user);
 
-        Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
+        Authentication authToken = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
 
         // 세션 생성
         SecurityContextHolder.getContext().setAuthentication(authToken);

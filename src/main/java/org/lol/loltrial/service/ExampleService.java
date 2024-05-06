@@ -18,9 +18,7 @@ public class ExampleService {
     private final ExampleRepository exampleRepository;
 
     public Long save(ExampleDto exampleDto) {
-        Example example = new Example();
-
-        example.builder()
+        Example example = Example.builder()
                 .name(exampleDto.getName())
                 .age(exampleDto.getAge())
                 .build();
